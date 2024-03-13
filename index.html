@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>How &gt;&#58;&#40; is Bizet?</title>
+    <script src="jspsych/jspsych.js"></script>
+    <script src="jspsych/jspsychsheet.js"></script>
+    <script src="jspsych/plugin-survey-text.js"></script>
+    <script src="jspsych/plugin-preload.js"></script>
+    <script src="jspsych/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych/plugin-html-button-response.js"></script>
+    <script src="jspsych/plugin-html-slider-response.js"></script>
+    <script src="jspsych/plugin-audio-slider-response.js"></script>
+    <link href="jspsych/jspsych.css" rel="stylesheet" type="text/css" />
+    <link href="jspsych/jspsychsheet.css" rel="stylesheet" type="text/css" />
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        .jspsych-display-element {
+            font-size: 24px;
+        }
+    </style>
+</head>
+  <body></body>
+  <script>
+var jsPsych = initJsPsych({
+        show_progress_bar: true,
+        on_finish: function () {
+        url = "https://script.google.com/macros/s/AKfycbzpKFXpszAXRUjf4ra-cYX-Gy0hnM6Ins8ok62qcKwZnNUIclAXoHwkG5s6WU7U1tA0QA/exec";
+        jsPsychSheet.uploadData(url, jsPsych.data.get().csv())
+        }
+    });
+    
+    var timeline = [];
+
+    var preload = {
+    type: jsPsychPreload,
+    auto_preload: true
+    }
+
+    var idInputTrial = {
+            type: jsPsychSurveyText,
+            questions: [
+                {prompt: 'Participant ID:', placeholder: '099', required: true},
+            ]
+    };
+    timeline.push(idInputTrial);
+
+    var welcome = {
+        type: jsPsychHtmlButtonResponse,
+            stimulus: `
+            <p>Welcome to the experiment.</p>
+            <p>In this study, we want to learn about how you rate what the music is expressing.</p>
+            `,
+            choices:['Continue to instructions']
+    };
+    timeline.push(welcome);
+
+    var instructions1 = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `
+        <p>You will listen to a short excerpt of music.</br>
+        After that, you will be presented with different sliders with images on opposite ends.</br>
+        For each pair of images, select the one that best reflects the character of the music</br>
+        (that is, what the music seems to be conveying or representing or expressing).</br>
+        Do this by moving the slider to the position that you think best reflects what you think the music is expressing.</p>
+        `,
+        choices:['Begin experiment']
+    };
+    timeline.push(instructions1);
+
+    var audio1 = {
+        type: jsPsychAudioSliderResponse,
+        stimulus: 'sound/Brahms.mp3',
+        labels: ['<img src="image/1a_aroused.jpg">','<img src="image/1b_sleepy.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider2 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/2a_unpleasant.jpg">','<img src="image/2b_pleasant.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider3 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/3a_dominant.jpg">','<img src="image/3b_submissive.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider4 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/4a_angry.jpg">','<img src="image/4b_scared.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider5 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/5a_sad.jpg">','<img src="image/5b_happy.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider6 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/6a_excited.jpg">','<img src="image/6b_calm.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider7 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/7a_orange.jpg">','<img src="image/7b_cyan.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider8 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/8a_red.jpg">','<img src="image/8b_blue.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider9 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/9a_takete.jpg">','<img src="image/9b_maluma.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider10 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/10a_kiki.jpg">','<img src="image/10b_bouba.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider11 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/11a_rough.jpg">','<img src="image/11b_smooth.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider12 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/12a_hard.jpg">','<img src="image/12b_soft.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider13 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/13a_heavy.jpg">','<img src="image/13b_light.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider14 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/14a_cold.jpg">','<img src="image/14b_hot.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    var slider15 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<p></p>`,
+        labels: ['<img src="image/15a_slow.jpg">','<img src="image/15b_fast.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+
+    timeline.push(audio1, slider2, slider3, slider4, slider5, slider6, slider7, slider8, slider9, slider10, slider11, slider12, slider13, slider14, slider15);
+
+    var audio2 = {
+        type: jsPsychAudioSliderResponse,
+        stimulus: 'sound/Bizet.mp3',
+        labels: ['<img src="image/1a_aroused.jpg">','<img src="image/1b_sleepy.jpg">'],
+        step: 1,
+        prompt: `<p>Clicking on the position on the slider that is closest to that image.</br>
+            Please give your initial impression.</p>`,
+        slider_width: 1000,
+        require_movement: true,
+    };
+    
+    timeline.push(audio2, slider2, slider3, slider4, slider5, slider6, slider7, slider8, slider9, slider10, slider11, slider12, slider13, slider14, slider15);
+
+    var end = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `
+        <p>You've come to the end of the experiment.</p>
+        <p>Thank you for participating.</p>
+        <p>You've contributed to science!</p>
+        <p>Woohoo!</p>
+        `,
+        choices:['End experiment and upload my data'],
+        on_finish: function(data) {
+            document.body.innerHTML += '<p>Please wait for your data to finish uploading before closing the browser window.</p>';
+        },
+    };
+    timeline.push(end);
+
+    var all_data = jsPsych.data.get();
+    console.log(all_data.csv());
+
+    jsPsych.run(timeline);
+
+  </script>
+</html>
